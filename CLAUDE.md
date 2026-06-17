@@ -19,9 +19,10 @@ A golf pool web app for The Masters tournament. Single-page HTML app with Supaba
 - Teams hidden until tournament starts (admin toggle: "Reveal Teams")
 
 ## Supabase
-- **Project ID:** ggclubyvmdfgoeeoiqhi
-- **Tables:** `entries`, `settings`
+- **Project ID:** kwkcdrxwkhzudoppyben (owned by Sam / whitesam88-collab)
+- **Tables:** `entries` (cols: id, name, picks jsonb, tb_guess, tournament, created_at, updated_at), `settings` (id=1, entry_fee, tournaments_config json, updated_at)
 - Client variable is `sb` (not `supabase` - renamed to avoid CDN conflict)
+- `entries.tournament` tags each entry to a pool; `settings.tournaments_config` holds per-tournament {open,locked,teamsRevealed,tbAnswer} JSON
 
 ## Admin Settings
 - **Lock Entries:** Prevents new signups
