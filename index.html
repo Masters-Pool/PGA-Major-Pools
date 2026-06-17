@@ -801,12 +801,66 @@ input,select{font-family:inherit}
   .sb-row{grid-template-columns:30px 1fr 48px 68px}
   .sb-r1-hide{display:none}
 }
+
+/* ── HOME SCREEN ── */
+#homeScreen{min-height:100vh;background:radial-gradient(ellipse at top,#16321f 0%,#0d2417 55%,#081a10 100%);display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.home-inner{max-width:1080px;width:100%}
+.home-head{text-align:center;margin-bottom:40px}
+.home-badge{width:64px;height:64px;background:linear-gradient(180deg,#d4af37,#b8962e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px;box-shadow:0 6px 24px rgba(0,0,0,0.4)}
+.home-head h1{font-family:'Playfair Display',serif;font-size:46px;font-weight:900;color:#fff;line-height:1.05}
+.home-head h1 em{color:#d4af37;font-style:italic}
+.home-head p{font-family:'EB Garamond',serif;font-size:17px;color:rgba(255,255,255,0.7);margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.5}
+.home-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.home-card{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;border:1px solid rgba(255,255,255,0.1);transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+.home-card::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transition:transform 0.4s}
+.home-card::after{content:'';position:absolute;inset:0;z-index:1}
+.home-card>*{position:relative;z-index:2}
+.home-card.open:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,0.5)}
+.home-card.open:hover::before{transform:scale(1.06)}
+.home-card.closed{cursor:not-allowed;filter:grayscale(0.7) brightness(0.6)}
+.home-card-badge{position:absolute;top:16px;left:16px;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:900;z-index:2;box-shadow:0 2px 10px rgba(0,0,0,0.4)}
+.home-card-status{position:absolute;top:18px;right:16px;z-index:2;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 11px;border-radius:20px;font-weight:500}
+.home-card-status.live{background:#d4af37;color:#0d2417}
+.home-card-status.soon{background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.25)}
+.home-card h2{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
+.home-card .loc{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-top:3px;text-shadow:0 1px 4px rgba(0,0,0,0.7)}
+.home-card .dates{font-family:'EB Garamond',serif;font-size:13px;color:rgba(255,255,255,0.75);margin-top:2px;text-shadow:0 1px 4px rgba(0,0,0,0.7)}
+.home-card .enter-cta{margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.home-card .entry-count{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.7);margin-top:4px}
+.home-admin-toggle{position:absolute;bottom:18px;right:16px;z-index:3;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,0.45);padding:6px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.2)}
+.hat-label{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:1.5px;color:#fff}
+.hat-switch{width:30px;height:16px;border-radius:16px;background:#888;position:relative;transition:0.2s}
+.hat-switch.on{background:#4ade80}
+.hat-switch::before{content:'';position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;top:2px;left:2px;transition:0.2s}
+.hat-switch.on::before{transform:translateX(14px)}
+.home-foot{text-align:center;margin-top:32px;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.home-return{position:absolute;top:12px;right:16px;z-index:250;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.25);color:#fff;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 13px;border-radius:20px;cursor:pointer}
+.home-return:hover{background:rgba(0,0,0,0.4)}
+@media(max-width:700px){
+  .home-head h1{font-size:34px}
+  .home-grid{grid-template-columns:1fr;gap:14px}
+  .home-card{min-height:170px}
+}
 </style>
 </head>
 <body>
 
+<!-- HOME SCREEN (tournament picker) -->
+<div id="homeScreen">
+  <div class="home-inner">
+    <div class="home-head">
+      <div class="home-badge">⛳</div>
+      <h1>Major <em>Pools</em></h1>
+      <p>Choose your championship. Pick six, climb the leaderboard, win the pool.</p>
+    </div>
+    <div class="home-grid" id="homeGrid"></div>
+    <div class="home-foot">2026 Season · Powered by live ESPN scoring · <span id="homeAdminLink" style="cursor:pointer;text-decoration:underline" onclick="homeAdminLogin()">Admin</span></div>
+  </div>
+</div>
+
 <!-- HEADER -->
-<div class="page-wrap">
+<div class="page-wrap" style="display:none">
+<button class="home-return" onclick="goHome()" title="Switch tournament">⇄ Switch Pool</button>
 <div class="top-header">
   <div class="top-inner">
     <div class="logo">
@@ -1074,7 +1128,11 @@ input,select{font-family:inherit}
 
         <!-- Settings -->
         <div class="a-card" style="grid-column:1/-1">
-          <h3>⚙️ Settings</h3>
+          <h3>⚙️ Settings — <span id="poolNameLabel" style="color:var(--gold)">Pool</span></h3>
+          <div class="lock-toggle-row">
+            <div><div class="lock-toggle-label">Open This Pool</div><div class="lock-toggle-sub">Show this tournament on the home screen so users can join</div></div>
+            <label class="toggle-switch"><input type="checkbox" id="poolOpenToggle" onchange="savePoolOpen()"><span class="toggle-slider"></span></label>
+          </div>
           <div class="lock-toggle-row">
             <div><div class="lock-toggle-label">Lock Entries</div><div class="lock-toggle-sub">Prevents new signups once tournament starts</div></div>
             <label class="toggle-switch"><input type="checkbox" id="lockToggle" onchange="saveLock()"><span class="toggle-slider"></span></label>
@@ -1149,9 +1207,148 @@ const TMETA = [
   {label:'⭐ Tier 2 — Contenders', sub:'Strong players who can win on their best week.',        key:'contenders'},
   {label:'🎯 Tier 3 — Sleepers',   sub:'Mid-tier players primed for a surprise run.',           key:'sleepers'},
   {label:'🎲 Tier 4 — Longshots',  sub:'High-upside picks at longer odds.',                    key:'longshots'},
-  {label:'🃏 Wild Card 1',          sub:'Any Masters field player NOT already in Tiers 1–4.',key:'all'},
-  {label:'🃏 Wild Card 2',          sub:'Any Masters field player NOT already in Tiers 1–4 — must differ from WC1.', key:'all'},
+  {label:'🃏 Wild Card 1',          sub:'Any field player NOT already in Tiers 1–4.',key:'all'},
+  {label:'🃏 Wild Card 2',          sub:'Any field player NOT already in Tiers 1–4 — must differ from WC1.', key:'all'},
 ];
+
+// ── TOURNAMENT SKINS ──
+const SKINS = {
+  masters: {
+    id: 'masters',
+    name: 'The Masters',
+    year: 2026,
+    location: 'Augusta National · Georgia',
+    logo: 'M',
+    colors: {
+      primary: '#1a3c2e',    // Dark green
+      accent: '#c9a84c',     // Gold
+      accent_light: '#e8c96a',
+      accent_pale: '#fdf6e3',
+      secondary: '#2d5a3d',
+      light: '#4a7c5e',
+    },
+    scoreboard_title: 'L E A D E R S',
+    cut_label: 'PROJECTED CUT',
+    field_name: 'Masters',
+    espnEvent: '401811941',          // ESPN event id (golf/pga league)
+    espnSeason: 2026,
+    par: [4,5,4,3,4,3,4,5,4,4,4,3,5,4,5,3,4,4],   // Augusta National, par 72
+    startMsg: 'Live scores will appear when the tournament begins.<br>Round 1 starts Thursday, April 9.',
+    scoreboardBg: 'augusta-bg.jpg',  // Augusta National
+  },
+  usopen: {
+    id: 'usopen',
+    name: 'U.S. Open',
+    year: 2026,
+    location: 'Shinnecock Hills · Southampton, NY',
+    logo: '🏌️',
+    colors: {
+      primary: '#003463',    // USGA Navy Blue (Pantone 2955)
+      accent: '#d4a500',     // Gold
+      accent_light: '#e8c96a',
+      accent_pale: '#fef9e3',
+      secondary: '#004a94',
+      light: '#0066cc',
+    },
+    scoreboard_title: 'C U R R E N T  S C O R E S',
+    cut_label: 'CUT LINE',
+    field_name: 'U.S. Open',
+    espnEvent: '401811952',
+    espnSeason: 2026,
+    par: [4,3,4,4,5,4,3,4,4,4,3,4,4,4,4,5,3,4],   // Shinnecock Hills, par 70
+    startMsg: 'Live scores will appear when the tournament begins.<br>Round 1 starts Thursday, June 18.',
+    scoreboardBg: 'usopen-bg.jpg',   // Shinnecock Hills
+  },
+  open: {
+    id: 'open',
+    name: 'The Open Championship',
+    year: 2026,
+    location: 'Royal Birkdale · Southport',
+    logo: '🏴󐁧󐁢󐁳󐁣󐁴󐁿',
+    colors: {
+      primary: '#0a1f47',    // Navy Blue
+      accent: '#c8b026',     // Gold
+      accent_light: '#dcc966',
+      accent_pale: '#f5f1e3',
+      secondary: '#1a3c6b',
+      light: '#2a5090',
+    },
+    scoreboard_title: 'L E A D E R B O A R D',
+    cut_label: 'CUT MARK',
+    field_name: 'The Open',
+    espnEvent: '401811957',
+    espnSeason: 2026,
+    par: [4,4,4,3,4,5,4,3,5,4,3,4,4,4,4,4,3,4],   // links par 70 (approx; refined at tee-off)
+    startMsg: 'Live scores will appear when the tournament begins.<br>Round 1 starts Thursday, July 16.',
+    scoreboardBg: 'open-bg.jpg',     // Royal Birkdale
+  },
+  pga: {
+    id: 'pga',
+    name: 'PGA Championship',
+    year: 2026,
+    location: 'Quail Hollow · Charlotte',
+    logo: '⛳',
+    colors: {
+      primary: '#00205b',    // PGA Navy Blue
+      accent: '#daa520',     // Goldenrod
+      accent_light: '#f0c060',
+      accent_pale: '#fffaf0',
+      secondary: '#1a4a8a',
+      light: '#0052cc',
+    },
+    scoreboard_title: 'P L A Y E R  S C O R E S',
+    cut_label: 'CUT LINE',
+    field_name: 'PGA Championship',
+    espnEvent: '401811947',
+    espnSeason: 2026,
+    par: [4,4,4,3,4,5,3,4,5,4,4,3,4,3,4,4,3,4],   // Quail Hollow, par 71
+    startMsg: 'Live scores will appear when the tournament begins.<br>Round 1 starts Thursday, May 14.',
+    scoreboardBg: 'pga-bg.jpg',      // Quail Hollow
+  }
+};
+
+// Display dates for each tournament (home screen)
+const TOURNEY_DATES = {
+  masters: 'April 9–12, 2026',
+  usopen:  'June 18–21, 2026',
+  open:    'July 16–19, 2026',
+  pga:     'May 14–17, 2026'
+};
+// Order tournaments appear on the home screen (chronological)
+const TOURNEY_ORDER = ['masters','pga','usopen','open'];
+
+// Active skin accessor
+function activeSkin(){ return SKINS[S.settings.activeTournament] || SKINS.masters; }
+// Per-tournament admin config accessor (open / locked / teamsRevealed / tbAnswer)
+function defaultTcfg(){ return {open:false, locked:false, teamsRevealed:false, tbAnswer:null}; }
+function tcfg(t){ t=t||S.settings.activeTournament; if(!S.tournaments[t])S.tournaments[t]=defaultTcfg(); return S.tournaments[t]; }
+
+const PLAYERS_BY_TOURNAMENT = {
+  masters: {
+    favorites: ['Scottie Scheffler','Jon Rahm','Bryson DeChambeau','Rory McIlroy','Ludvig Aberg','Xander Schauffele','Matt Fitzpatrick','Cameron Young'],
+    contenders: ['Tommy Fleetwood','Collin Morikawa','Justin Rose','Robert MacIntyre','Patrick Reed','Hideki Matsuyama','Min Woo Lee','Chris Gotterup'],
+    sleepers: ['Jordan Spieth','Brooks Koepka','Si Woo Kim','Shane Lowry','Viktor Hovland','Akshay Bhatia','Patrick Cantlay','Nicolai Hojgaard'],
+    longshots: ['Jacob Bridgeman','Sepp Straka','Adam Scott','Tyrrell Hatton','J.J. Spaun','Russell Henley','Sungjae Im','Harris English']
+  },
+  usopen: {
+    favorites: ['Scottie Scheffler','Rory McIlroy','Ludvig Aberg','Jon Rahm','Bryson DeChambeau','Xander Schauffele','Collin Morikawa','Hideki Matsuyama'],
+    contenders: ['Cameron Young','Tommy Fleetwood','Joaquin Niemann','Patrick Cantlay','Viktor Hovland','Russell Henley','Sungjae Im','Wyndham Clark'],
+    sleepers: ['Tyrrell Hatton','Sepp Straka','Akshay Bhatia','Sahith Theegala','Aaron Rai','Keegan Bradley','J.J. Spaun','Jordan Spieth'],
+    longshots: ['Min Woo Lee','Ben Griffin','Rickie Fowler','Chris Kirk','Shane Lowry','Ryan Fox','Robert MacIntyre','Patrick Reed']
+  },
+  open: {
+    favorites: ['Jon Rahm','Rory McIlroy','Scottie Scheffler','Viktor Hovland','Ludvig Aberg','Tommy Fleetwood','Collin Morikawa','Bryson DeChambeau'],
+    contenders: ['Xander Schauffele','Cameron Young','Russell Henley','Matt Fitzpatrick','Hideki Matsuyama','Tyrrell Hatton','Patrick Cantlay','Patrick Reed'],
+    sleepers: ['Jordan Spieth','Brooks Koepka','Shane Lowry','Sepp Straka','Wyndham Clark','Aaron Rai','Keegan Bradley','Tony Finau'],
+    longshots: ['Min Woo Lee','Robert MacIntyre','Jason Kokrak','Adam Scott','J.J. Spaun','Sungjae Im','Matt Wallace','Harris English']
+  },
+  pga: {
+    favorites: ['Scottie Scheffler','Rory McIlroy','Jon Rahm','Ludvig Aberg','Viktor Hovland','Bryson DeChambeau','Xander Schauffele','Collin Morikawa'],
+    contenders: ['Cameron Young','Patrick Cantlay','Russell Henley','Tony Finau','Hideki Matsuyama','Tyrrell Hatton','Tommy Fleetwood','Jordan Spieth'],
+    sleepers: ['Keegan Bradley','Sepp Straka','Aaron Rai','Wyndham Clark','Sungjae Im','J.J. Spaun','Akshay Bhatia','Matt Fitzpatrick'],
+    longshots: ['Min Woo Lee','Robert MacIntyre','Shane Lowry','Brooks Koepka','Jason Kokrak','Patrick Reed','Adam Scott','Taylor Pendrith']
+  }
+};
 
 // ── SUPABASE CONFIG ──
 const SUPABASE_URL = 'https://ggclubyvmdfgoeeoiqhi.supabase.co';
@@ -1160,33 +1357,56 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ── STATE ──
 let S = {
-  entries:[], players:{favorites:[],contenders:[],sleepers:[],longshots:[]},
+  entries:[], allEntries:[], players:{favorites:[],contenders:[],sleepers:[],longshots:[]},
   scores:{}, editRound:1,
+  // Per-tournament admin config {open, locked, teamsRevealed, tbAnswer}
+  tournaments:{
+    masters:{open:false,locked:false,teamsRevealed:false,tbAnswer:null},
+    usopen:{open:false,locked:false,teamsRevealed:false,tbAnswer:null},
+    open:{open:false,locked:false,teamsRevealed:false,tbAnswer:null},
+    pga:{open:false,locked:false,teamsRevealed:false,tbAnswer:null}
+  },
+  // Per-tournament entry counts (for home screen badges)
+  entryCounts:{},
   settings:{
     password:'masters2026', activeRound:1,
     tbMode:'guess', tbAnswer:null,
     entryFee:20, splits:{s1:60,s2:25,s3:15},
     locked:false,
-    teamsRevealed:false
+    teamsRevealed:false,
+    activeTournament:null   // null = show home screen until a tournament is chosen
   }
 };
 let lbR=0, ePicks=[null,null,null,null,null,null];
+let adminUnlocked=false;
 
 // ── SUPABASE STORAGE ──
 async function loadFromSupabase(){
   try{
-    // Load entries from Supabase
+    // Load ALL entries (so we can count per-tournament for the home screen),
+    // then keep only the active tournament's entries in S.entries.
     const {data:entries, error:entriesErr} = await sb.from('entries').select('*').order('created_at',{ascending:true});
     if(!entriesErr && entries){
-      S.entries = entries.map(e=>({id:e.id, name:e.name, picks:e.picks||[], tbGuess:e.tb_guess}));
+      S.allEntries = entries.map(e=>({id:e.id, name:e.name, picks:e.picks||[], tbGuess:e.tb_guess, tournament:e.tournament||'masters'}));
+      S.entryCounts = {};
+      S.allEntries.forEach(e=>{S.entryCounts[e.tournament]=(S.entryCounts[e.tournament]||0)+1;});
+      filterEntriesForActive();
     }
     // Load settings
     const {data:settings, error:settingsErr} = await sb.from('settings').select('*').eq('id',1).single();
     if(!settingsErr && settings){
-      S.settings.locked = settings.locked || false;
-      S.settings.teamsRevealed = settings.teams_revealed || false;
-      S.settings.tbAnswer = settings.tb_answer;
       S.settings.entryFee = settings.entry_fee || 20;
+      // Per-tournament config (open / locked / teamsRevealed / tbAnswer)
+      if(settings.tournaments_config){
+        try{
+          const cfg = typeof settings.tournaments_config==='string'?JSON.parse(settings.tournaments_config):settings.tournaments_config;
+          for(const t of Object.keys(SKINS)) S.tournaments[t] = Object.assign(defaultTcfg(), cfg[t]||{});
+        }catch(e){console.warn('tournaments_config parse failed',e);}
+      }else{
+        // Back-compat: seed from old single-tournament columns
+        const legacy = settings.active_tournament || 'masters';
+        S.tournaments[legacy] = {open:true, locked:settings.locked||false, teamsRevealed:settings.teams_revealed||false, tbAnswer:settings.tb_answer??null};
+      }
     }
     // Load local-only data (players, scores) from localStorage as backup
     const d=localStorage.getItem(SK);
@@ -1199,7 +1419,22 @@ async function loadFromSupabase(){
         S.settings.password = saved.settings.password || 'masters2026';
       }
     }
+    rebuildWCPool();
   }catch(e){console.error('Load error:',e);}
+}
+
+// Sync the per-tournament config into the flat S.settings fields the rest of the app reads
+function syncActiveTcfg(){
+  const c = tcfg();
+  S.settings.locked = c.locked;
+  S.settings.teamsRevealed = c.teamsRevealed;
+  S.settings.tbAnswer = c.tbAnswer;
+}
+// Keep S.entries limited to the active tournament
+function filterEntriesForActive(){
+  const t = S.settings.activeTournament;
+  const all = S.allEntries || [];
+  S.entries = t ? all.filter(e=>e.tournament===t) : [];
 }
 
 async function saveEntry(entry){
@@ -1207,10 +1442,16 @@ async function saveEntry(entry){
     const {data,error} = await sb.from('entries').insert({
       name: entry.name,
       picks: entry.picks,
-      tb_guess: entry.tbGuess
+      tb_guess: entry.tbGuess,
+      tournament: S.settings.activeTournament
     }).select().single();
     if(error) throw error;
     entry.id = data.id;
+    entry.tournament = S.settings.activeTournament;
+    // Keep the cross-pool caches in sync (home-screen counts, etc.)
+    if(!S.allEntries)S.allEntries=[];
+    S.allEntries.push({id:entry.id,name:entry.name,picks:entry.picks,tbGuess:entry.tbGuess,tournament:entry.tournament});
+    S.entryCounts[entry.tournament]=(S.entryCounts[entry.tournament]||0)+1;
     return data;
   }catch(e){console.error('Save entry error:',e);throw e;}
 }
@@ -1236,18 +1477,23 @@ async function deleteEntry(id){
 async function saveSettings(){
   try{
     await sb.from('settings').update({
-      locked: S.settings.locked,
-      teams_revealed: S.settings.teamsRevealed,
-      tb_answer: S.settings.tbAnswer,
       entry_fee: S.settings.entryFee,
+      tournaments_config: JSON.stringify(S.tournaments),
       updated_at: new Date().toISOString()
     }).eq('id', 1);
   }catch(e){console.error('Save settings error:',e);}
 }
 
-// Keep localStorage for local-only data (scores, players, admin settings)
+// Keep localStorage for local-only data (scores, admin settings).
+// Scores are cached per-tournament so switching pools never shows stale data.
 function saveLocal(){
-  try{localStorage.setItem(SK,JSON.stringify({players:S.players,scores:S.scores,settings:{activeRound:S.settings.activeRound,password:S.settings.password,splits:S.settings.splits}}));}catch(e){}
+  try{
+    localStorage.setItem(SK,JSON.stringify({settings:{activeRound:S.settings.activeRound,password:S.settings.password,splits:S.settings.splits}}));
+    if(S.settings.activeTournament)localStorage.setItem('mpool_scores_'+S.settings.activeTournament,JSON.stringify(S.scores||{}));
+  }catch(e){}
+}
+function loadScoresCache(t){
+  try{const raw=localStorage.getItem('mpool_scores_'+t);return raw?JSON.parse(raw):{};}catch(e){return{};}
 }
 function save(){saveLocal();} // Alias for compatibility
 
@@ -1255,15 +1501,15 @@ function save(){saveLocal();} // Alias for compatibility
 function subscribeToChanges(){
   sb.channel('entries-changes')
     .on('postgres_changes',{event:'*',schema:'public',table:'entries'},async(payload)=>{
-      console.log('Realtime update:',payload);
       await loadFromSupabase();
-      renderAll();
+      syncActiveTcfg();
+      if(S.settings.activeTournament){renderAll();}else{renderHome();}
       showToast('📡 Pool updated!');
     })
     .on('postgres_changes',{event:'*',schema:'public',table:'settings'},async(payload)=>{
       await loadFromSupabase();
-      renderAll();
-      updateLockNavIndicator();
+      syncActiveTcfg();
+      if(S.settings.activeTournament){renderAll();updateLockNavIndicator();}else{renderHome();}
     })
     .subscribe();
 }
@@ -1273,7 +1519,11 @@ async function pollEntries(){
   try{
     const {data,error}=await sb.from('entries').select('*').order('created_at',{ascending:true});
     if(error||!data)return;
-    const fresh=data.map(e=>({id:e.id,name:e.name,picks:e.picks||[],tbGuess:e.tb_guess}));
+    const allFresh=data.map(e=>({id:e.id,name:e.name,picks:e.picks||[],tbGuess:e.tb_guess,tournament:e.tournament||'masters'}));
+    S.allEntries=allFresh;
+    S.entryCounts={}; allFresh.forEach(e=>{S.entryCounts[e.tournament]=(S.entryCounts[e.tournament]||0)+1;});
+    if(!S.settings.activeTournament){renderHome();return;}
+    const fresh=allFresh.filter(e=>e.tournament===S.settings.activeTournament);
     const oldIds=new Set(S.entries.map(e=>e.id));
     const newOnes=fresh.filter(e=>!oldIds.has(e.id));
     const changed=fresh.length!==S.entries.length||newOnes.length>0;
@@ -1285,18 +1535,39 @@ async function pollEntries(){
   }catch(e){console.error('pollEntries:',e);}
 }
 
-// ── SEED DATA (2026 Masters tiers — FanDuel odds via CBS Sports/Golf Channel) ──
+// ── SEED DATA ──
 function seed(){
-  S.players={
-    favorites:['Scottie Scheffler','Jon Rahm','Bryson DeChambeau','Rory McIlroy','Ludvig Aberg','Xander Schauffele','Matt Fitzpatrick','Cameron Young'],
-    contenders:['Tommy Fleetwood','Collin Morikawa','Justin Rose','Robert MacIntyre','Patrick Reed','Hideki Matsuyama','Min Woo Lee','Chris Gotterup'],
-    sleepers:['Jordan Spieth','Brooks Koepka','Si Woo Kim','Shane Lowry','Viktor Hovland','Akshay Bhatia','Patrick Cantlay','Nicolai Hojgaard'],
-    longshots:['Jacob Bridgeman','Sepp Straka','Adam Scott','Tyrrell Hatton','J.J. Spaun','Russell Henley','Sungjae Im','Harris English']
-  };
+  const tourney = SKINS[S.settings.activeTournament] || SKINS.masters;
+  const players = PLAYERS_BY_TOURNAMENT[S.settings.activeTournament] || PLAYERS_BY_TOURNAMENT.masters;
+  S.players = players;
   S.scores={};
   S.entries=[];
   S.settings.activeRound=1;
+  rebuildWCPool();
   save();
+}
+
+// ── APPLY SKIN ──
+function applySkin(){
+  const skin = SKINS[S.settings.activeTournament] || SKINS.masters;
+  const root = document.documentElement.style;
+  root.setProperty('--gd', skin.colors.primary);
+  root.setProperty('--gm', skin.colors.secondary);
+  root.setProperty('--gl', skin.colors.light);
+  root.setProperty('--gold', skin.colors.accent);
+  root.setProperty('--gold-l', skin.colors.accent_light);
+  root.setProperty('--gold-p', skin.colors.accent_pale);
+
+  document.querySelector('.logo-badge').textContent = skin.logo;
+  document.querySelector('.logo-words h1').textContent = skin.name + ' Pool';
+  document.querySelector('.logo-words p').textContent = skin.location + ' · ' + skin.year;
+  document.querySelector('.hero h2').innerHTML = skin.name.replace(' ', '<em>') + '</em> Pool ' + skin.year;
+  const augustaHdr = document.querySelector('.augusta-header h2');
+  if(augustaHdr) augustaHdr.textContent = skin.scoreboard_title;
+  const cutLbl = document.querySelector('.cut-label');
+  if(cutLbl) cutLbl.textContent = skin.cut_label;
+  const scoresTab = document.getElementById('tab-scores');
+  if(scoresTab && skin.scoreboardBg) scoresTab.style.backgroundImage = `url('${skin.scoreboardBg}')`;
 }
 
 // ── SCORE HELPERS ──
@@ -1346,6 +1617,7 @@ function saveTbMode(){S.settings.tbMode=document.getElementById('tbMode').value;
 async function saveTbAnswer(){
   const val=document.getElementById('tbAnswer')?.value;
   S.settings.tbAnswer=val!==''?Number(val):null;
+  tcfg().tbAnswer=S.settings.tbAnswer;       // persist per-tournament
   save();
   await saveSettings(); // Save to Supabase
   renderLB();showAlert('scoreAlert','✓ Tiebreaker answer saved!','ok');
@@ -1654,7 +1926,8 @@ function buildTourneyFieldFromPool(){
 }
 
 // ── AUGUSTA SCOREBOARD ──
-const AUGUSTA_PAR=[4,5,4,3,4,3,4,5,4,4,4,3,5,4,5,3,4,4];
+// Course par for the active tournament (used by the hole-by-hole scorecard)
+function coursePar(){return activeSkin().par||[4,5,4,3,4,3,4,5,4,4,4,3,5,4,5,3,4,4];}
 let augustaPlayers=[];
 let augustaLoading=false;
 async function loadAugustaScoreboard(){
@@ -1671,7 +1944,9 @@ async function loadAugustaScoreboard(){
   loadingRow.appendChild(loadingTd);
   tbody.appendChild(loadingRow);
 
-  const EVENT='401811941';
+  const skin=activeSkin();
+  const EVENT=skin.espnEvent;
+  const SEASON=skin.espnSeason||2026;
   const CORE='https://sports.core.api.espn.com/v2/sports/golf/leagues/pga';
   const COMP=`${CORE}/events/${EVENT}/competitions/${EVENT}/competitors`;
 
@@ -1692,7 +1967,7 @@ async function loadAugustaScoreboard(){
     if(needNames.length>0){
       await Promise.all(needNames.map(async({id})=>{
         try{
-          const r=await fetch(`${CORE}/seasons/2026/athletes/${id}`);
+          const r=await fetch(`${CORE}/seasons/${SEASON}/athletes/${id}`);
           if(r.ok){const d=await r.json();nameCache[id]=d.displayName||d.fullName||null;}
         }catch(e){}
       }));
@@ -1757,7 +2032,8 @@ function renderAugustaDummy(){
   augustaPlayers=[];
   const tbody=document.getElementById('augustaScoreboard');
   if(tbody){
-    tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:40px;color:#6b7280;font-family:Oswald,sans-serif;font-size:14px;letter-spacing:1px;">Live scores will appear when the tournament begins.<br>Round 1 starts Thursday, April 10.</td></tr>';
+    const msg=activeSkin().startMsg||'Live scores will appear when the tournament begins.';
+    tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:40px;color:#6b7280;font-family:Oswald,sans-serif;font-size:14px;letter-spacing:1px;">'+msg+'</td></tr>';
   }
   const st=document.getElementById('augustaSyncTime');
   if(st)st.textContent='Waiting for tournament to begin';
@@ -1862,9 +2138,10 @@ function buildScorecardGrid(player,round){
   const inScore=holes.slice(9,18).filter(h=>h!=='').reduce((a,b)=>a+Number(b),0);
   const totalStrokes=outScore+inScore;
 
+  const PAR=coursePar();
   const getScoreCls=(stroke,holeIdx)=>{
     if(stroke===''||stroke===undefined)return'';
-    const par=AUGUSTA_PAR[holeIdx];
+    const par=PAR[holeIdx];
     const diff=Number(stroke)-par;
     if(diff<=-2)return'sc-eagle';
     if(diff===-1)return'sc-birdie';
@@ -1882,11 +2159,14 @@ function buildScorecardGrid(player,round){
   html+=`<div class="sc-label sc-in">IN</div><div class="sc-label sc-tot">TOT</div>`;
 
   // Par row
+  const PARROW=coursePar();
+  const parOut=PARROW.slice(0,9).reduce((a,b)=>a+b,0);
+  const parIn=PARROW.slice(9,18).reduce((a,b)=>a+b,0);
   html+=`<div class="sc-par">Par</div>`;
-  for(let i=0;i<9;i++)html+=`<div class="sc-par">${AUGUSTA_PAR[i]}</div>`;
-  html+=`<div class="sc-par sc-out">36</div>`;
-  for(let i=9;i<18;i++)html+=`<div class="sc-par">${AUGUSTA_PAR[i]}</div>`;
-  html+=`<div class="sc-par sc-in">36</div><div class="sc-par sc-tot">72</div>`;
+  for(let i=0;i<9;i++)html+=`<div class="sc-par">${PARROW[i]}</div>`;
+  html+=`<div class="sc-par sc-out">${parOut}</div>`;
+  for(let i=9;i<18;i++)html+=`<div class="sc-par">${PARROW[i]}</div>`;
+  html+=`<div class="sc-par sc-in">${parIn}</div><div class="sc-par sc-tot">${parOut+parIn}</div>`;
 
   // Score row
   html+=`<div class="sc-label">Score</div>`;
@@ -1936,12 +2216,14 @@ async function fetchScores(){
       .trim();
   }
 
-  const EVENT='401811941';
+  const skin=activeSkin();
+  const EVENT=skin.espnEvent;
+  const SEASON=skin.espnSeason||2026;
   const CORE='https://sports.core.api.espn.com/v2/sports/golf/leagues/pga';
   const COMP=`${CORE}/events/${EVENT}/competitions/${EVENT}/competitors`;
 
   try{
-    // Step 1: fetch all 91 competitor IDs
+    // Step 1: fetch all competitor IDs
     const listR=await fetch(`${COMP}?limit=200`);
     if(!listR.ok)throw new Error('ESPN competitors list failed: '+listR.status);
     const{items=[]}=await listR.json();
@@ -1959,7 +2241,7 @@ async function fetchScores(){
     if(needNames.length>0){
       await Promise.all(needNames.map(async({id})=>{
         try{
-          const r=await fetch(`${CORE}/seasons/2026/athletes/${id}`);
+          const r=await fetch(`${CORE}/seasons/${SEASON}/athletes/${id}`);
           if(r.ok){const d=await r.json();nameCache[id]=d.displayName||d.fullName||null;}
         }catch(e){}
       }));
@@ -2022,6 +2304,9 @@ async function fetchScores(){
       if(r4!==null)S.scores[poolName].r4=r4;
     });
 
+    // Now that the live field is loaded, refresh the Wild Card pool from it
+    rebuildWCPool();
+
     const now=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
     document.getElementById('syncTime').textContent=now;
     document.getElementById('syncRound').textContent='Round '+maxR;
@@ -2074,7 +2359,7 @@ async function manualRefresh(){
 function showToast(msg){const t=document.getElementById('refreshToast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 
 // ── SHARE LINK ──
-function getShareUrl(){const base=window.location.href.split('?')[0].split('#')[0];return base+'?join=1';}
+function getShareUrl(){const base=window.location.href.split('?')[0].split('#')[0];const t=S.settings.activeTournament;return base+'?t='+(t||'masters')+'&join=1';}
 function updateShareUrls(){const url=getShareUrl();['shareUrlDisplay','adminShareUrl'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=url;});}
 function copyShareLink(btn){
   const url=getShareUrl();
@@ -2099,6 +2384,7 @@ function handleUrlParams(){
 // ── LOCK ENTRIES ──
 async function saveLock(){
   S.settings.locked=document.getElementById('lockToggle').checked;
+  tcfg().locked=S.settings.locked;            // persist per-tournament
   save();
   await saveSettings(); // Save to Supabase
   updateLockBanner();updateLockNavIndicator();
@@ -2106,10 +2392,17 @@ async function saveLock(){
 }
 async function saveReveal(){
   S.settings.teamsRevealed=document.getElementById('revealToggle').checked;
+  tcfg().teamsRevealed=S.settings.teamsRevealed;  // persist per-tournament
   save();
   await saveSettings();
   renderLB();
   showAlert('scoreAlert',S.settings.teamsRevealed?'👀 Teams are now visible on leaderboard':'🙈 Teams are now hidden on leaderboard','ok');
+}
+// Toggle whether THIS pool is open for entries (from in-app admin)
+async function savePoolOpen(){
+  tcfg().open=document.getElementById('poolOpenToggle').checked;
+  await saveSettings();
+  showAlert('scoreAlert',tcfg().open?'✅ This pool is now OPEN on the home screen':'🚫 This pool is now closed','ok');
 }
 function updateLockBanner(){
   const btn=document.getElementById('submitBtn');if(btn)btn.disabled=!!S.settings.locked;
@@ -2125,6 +2418,7 @@ function updateLockNavIndicator(){
   const db=document.querySelector('.desk-nav button:nth-child(3)');
   if(db)db.textContent=locked?'🔒 Locked':'Enter Pool';
 }
+
 
 // ── PRIZE POOL ──
 function updatePrizePool(){
@@ -2167,7 +2461,8 @@ function exportCSV(){
 
 // ── ADMIN ──
 function checkAdmin(){
-  if(document.getElementById('adminPass').value===S.settings.password){
+  if(adminUnlocked || document.getElementById('adminPass').value===S.settings.password){
+    adminUnlocked=true;
     document.getElementById('adminGate').style.display='none';
     document.getElementById('adminPanel').style.display='block';
     renderAdmin();
@@ -2177,6 +2472,8 @@ function renderAdmin(){
   renderEntryList();renderFieldList();renderSE();populateSels();
   const lt=document.getElementById('lockToggle');if(lt)lt.checked=!!S.settings.locked;
   const rt=document.getElementById('revealToggle');if(rt)rt.checked=!!S.settings.teamsRevealed;
+  const po=document.getElementById('poolOpenToggle');if(po)po.checked=!!tcfg().open;
+  const pl=document.getElementById('poolNameLabel');if(pl)pl.textContent=activeSkin().name;
   const ef=document.getElementById('entryFee');if(ef&&S.settings.entryFee)ef.value=S.settings.entryFee;
   if(S.settings.splits){
     const s=S.settings.splits;
@@ -2344,7 +2641,19 @@ function addPlayer(){
 function removePlayer(ti,name){S.players[TKEYS[ti]]=S.players[TKEYS[ti]].filter(p=>p!==name);save();renderAdmin();renderAll();}
 function saveSetting(){S.settings.activeRound=Number(document.getElementById('activeRound').value);document.getElementById('hRound').textContent='R'+S.settings.activeRound;document.getElementById('syncRound').textContent='Round '+S.settings.activeRound;save();renderAll();}
 function savePw(){const pw=document.getElementById('newPw').value.trim();if(!pw)return;S.settings.password=pw;save();showAlert('scoreAlert','✓ Password updated.','ok');document.getElementById('newPw').value='';}
-function clearAll(){if(!confirm('Delete ALL data? This cannot be undone.'))return;S.entries=[];S.scores={};S.players={favorites:[],contenders:[],sleepers:[],longshots:[]};S.settings.locked=false;save();renderAll();renderAdmin();updatePrizePool();updateLockNavIndicator();}
+async function clearAll(){
+  const nm=activeSkin().name;
+  if(!confirm('Delete ALL entries for the '+nm+' pool? This cannot be undone and does NOT affect other tournaments.'))return;
+  try{
+    const {error}=await sb.from('entries').delete().eq('tournament',S.settings.activeTournament);
+    if(error)throw error;
+  }catch(e){showAlert('scoreAlert','Delete failed: '+e.message,'err');return;}
+  S.entries=[];S.scores={};
+  if(S.allEntries)S.allEntries=S.allEntries.filter(e=>e.tournament!==S.settings.activeTournament);
+  S.entryCounts[S.settings.activeTournament]=0;
+  save();renderAll();renderAdmin();updatePrizePool();updateLockNavIndicator();
+  showAlert('scoreAlert','✓ Cleared all entries for '+nm,'ok');
+}
 
 // ── ENTER POOL ──
 function renderEnter(){
@@ -2438,12 +2747,21 @@ function gotoLeaderboard(){
 
 // ── WILD CARD AUTOCOMPLETE ──
 // Complete 91-player Masters 2026 field (source: masters.com via NBC Sports)
-const MASTERS_FIELD=['Aaron Rai','Adam Scott','Akshay Bhatia','Aldrich Potgieter','Alex Noren','Andrew Novak','Angel Cabrera','Ben Griffin','Brandon Holtz','Brian Campbell','Brian Harman','Brooks Koepka','Bryson DeChambeau','Bubba Watson','Cameron Smith','Cameron Young','Carlos Ortiz','Casey Jarvis','Charl Schwartzel','Chris Gotterup','Collin Morikawa','Corey Conners','Daniel Berger','Danny Willett','Davis Riley','Dustin Johnson','Ethan Fang','Fifa Laopakdee','Fred Couples','Gary Woodland','Harris English','Harry Hall','Haotong Li','Hideki Matsuyama','J.J. Spaun','Jackson Herrington','Jacob Bridgeman','Jake Knapp','Jason Day','John Keefer','Jon Rahm','Jordan Spieth','Jose Maria Olazabal','Justin Rose','Justin Thomas','Keegan Bradley','Kristoffer Reitan','Kurt Kitayama','Ludvig Aberg','Marco Penge','Mason Howell','Matt Fitzpatrick','Matt McCarty','Mateo Pulcini','Maverick McNealy','Max Greyserman','Max Homa','Michael Brennan','Michael Kim','Mike Weir','Min Woo Lee','Naoyuki Kataoka','Nicolas Echavarria','Nick Taylor','Nicolai Hojgaard','Patrick Cantlay','Patrick Reed','Rasmus Hojgaard','Rasmus Neergaard-Petersen','Robert MacIntyre','Rory McIlroy','Russell Henley','Ryan Fox','Ryan Gerard','Sam Burns','Sami Valimaki','Samuel Stevens','Scottie Scheffler','Sepp Straka','Sergio Garcia','Shane Lowry','Si Woo Kim','Sungjae Im','Tom McKibbin','Tommy Fleetwood','Tyrrell Hatton','Viktor Hovland','Vijay Singh','Wyndham Clark','Xander Schauffele','Zach Johnson'];
-// Tier 1-4 players explicitly excluded from Wild Card pool
-const TIER_PLAYERS=new Set(['Scottie Scheffler','Jon Rahm','Bryson DeChambeau','Rory McIlroy','Ludvig Aberg','Xander Schauffele','Matt Fitzpatrick','Cameron Young','Tommy Fleetwood','Collin Morikawa','Justin Rose','Robert MacIntyre','Patrick Reed','Hideki Matsuyama','Min Woo Lee','Chris Gotterup','Jordan Spieth','Brooks Koepka','Si Woo Kim','Shane Lowry','Viktor Hovland','Akshay Bhatia','Patrick Cantlay','Nicolai Hojgaard','Jacob Bridgeman','Sepp Straka','Adam Scott','Tyrrell Hatton','J.J. Spaun','Russell Henley','Sungjae Im','Harris English']);
-// WC pool = full field minus all tier players
-const WC_POOL=MASTERS_FIELD.filter(n=>!TIER_PLAYERS.has(n)).sort();
-const TOUR_PROS=MASTERS_FIELD;
+// Build WC pool from current tournament's players
+let WC_POOL=[], TIER_PLAYERS=new Set(), TOUR_PROS=[];
+function rebuildWCPool(){
+  TIER_PLAYERS = new Set();
+  for(let k of TKEYS){
+    S.players[k].forEach(p => TIER_PLAYERS.add(p));
+  }
+  // Wild Card pool = the full tournament field minus the tier players.
+  // Prefer the live ESPN field (keys of S.scores) once it has loaded; otherwise
+  // fall back to just the tier players so the selector is never totally empty.
+  const fieldNames = Object.keys(S.scores||{});
+  const fieldSource = fieldNames.length > 32 ? fieldNames : [...TIER_PLAYERS];
+  TOUR_PROS = [...new Set(fieldSource)].sort();
+  WC_POOL = TOUR_PROS.filter(n => !TIER_PLAYERS.has(n)).sort();
+}
 let wcFocusIdx={};
 function getWcCandidates(slot,query){
   const otherSlot=slot===4?5:4;
@@ -2458,9 +2776,10 @@ function wcInput(slot,val){
   wcFocusIdx[slot]=-1;if(!q){dd.innerHTML='';return;}
   const matches=getWcCandidates(slot,q);
   if(!matches.length){dd.innerHTML=`<div class="wc-opt" style="pointer-events:none;opacity:0.5"><span class="wc-opt-name">No field players match</span></div>`;return;}
+  const skin = SKINS[S.settings.activeTournament] || SKINS.masters;
   dd.innerHTML=matches.map((name,i)=>`<div class="wc-opt" data-idx="${i}" data-name="${name.replace(/"/g,'&quot;')}" onmousedown="wcSelect(${slot},this.dataset.name)" onmouseover="wcHover(${slot},${i})">
     <span class="wc-opt-name">${hlMatch(name,q)}</span>
-    <span class="wc-opt-external">⛳ Masters Field</span>
+    <span class="wc-opt-external">⛳ ${skin.field_name} Field</span>
   </div>`).join('');
 }
 function wcHover(slot,idx){wcFocusIdx[slot]=idx;document.querySelectorAll(`#wcd_${slot} .wc-opt`).forEach((el,i)=>el.classList.toggle('focused',i===idx));}
@@ -2490,6 +2809,90 @@ function closeDropdown(slot){const dd=document.getElementById('wcd_'+slot);if(dd
 function clearWc(slot){ePicks[slot]=null;const div=document.getElementById('wcs_'+slot);if(div)div.innerHTML='';const inp=document.getElementById('wci_'+slot);if(inp){inp.value='';inp.focus();}}
 
 // ── TABS ──
+// ── HOME SCREEN / TOURNAMENT SELECTION ──
+function hexA(hex,a){const h=hex.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return `rgba(${r},${g},${b},${a})`;}
+function renderHome(){
+  const grid=document.getElementById('homeGrid');if(!grid)return;
+  grid.innerHTML = TOURNEY_ORDER.map(t=>{
+    const sk=SKINS[t]; const open=!!tcfg(t).open;
+    const count=S.entryCounts[t]||0;
+    const clickable = open || adminUnlocked;
+    const overlay = `linear-gradient(180deg, rgba(0,0,0,0.12) 0%, ${hexA(sk.colors.primary,0.62)} 55%, ${hexA(sk.colors.primary,0.95)} 100%)`;
+    const bg = `${overlay}, url('${sk.scoreboardBg||''}') center/cover no-repeat`;
+    const adminToggle = adminUnlocked
+      ? `<div class="home-admin-toggle" onclick="event.stopPropagation();toggleTournamentOpen('${t}')">
+           <span class="hat-label">${open?'OPEN':'CLOSED'}</span>
+           <span class="hat-switch ${open?'on':''}"></span>
+         </div>` : '';
+    return `<div class="home-card ${open?'open':'closed'}" ${clickable?`onclick="selectTournament('${t}')"`:''} style="background:${bg}">
+      <div class="home-card-badge" style="background:${sk.colors.accent};color:${sk.colors.primary}">${sk.logo}</div>
+      <div class="home-card-status ${open?'live':'soon'}">${open?'● Open':'Coming Soon'}</div>
+      ${adminToggle}
+      <h2>${sk.name}</h2>
+      <div class="loc">${sk.location}</div>
+      <div class="dates">${TOURNEY_DATES[t]||''}</div>
+      ${open
+        ? `<div class="enter-cta" style="color:${sk.colors.accent_light}">Enter Pool →</div><div class="entry-count">${count} ${count===1?'entry':'entries'}</div>`
+        : `<div class="enter-cta" style="color:rgba(255,255,255,0.55)">${adminUnlocked?'Tap to manage (admin)':'Not yet open'}</div>`}
+    </div>`;
+  }).join('');
+  const link=document.getElementById('homeAdminLink');
+  if(link)link.textContent=adminUnlocked?'Admin ✓':'Admin';
+}
+function homeAdminLogin(){
+  if(adminUnlocked){adminUnlocked=false;renderHome();return;}
+  const pw=prompt('Admin password:');
+  if(pw===null)return;
+  if(pw===S.settings.password){adminUnlocked=true;renderHome();showToast('🔓 Admin unlocked');}
+  else alert('Incorrect password.');
+}
+async function toggleTournamentOpen(t){
+  if(!adminUnlocked)return;
+  tcfg(t).open=!tcfg(t).open;
+  renderHome();
+  await saveSettings();
+  showToast(SKINS[t].name+(tcfg(t).open?' is now OPEN':' is now closed'));
+}
+
+async function selectTournament(t){
+  if(!SKINS[t])return;
+  if(!tcfg(t).open && !adminUnlocked){showToast('That pool isn’t open yet');return;}
+  S.settings.activeTournament=t;
+  try{localStorage.setItem('mpool_tournament',t);}catch(e){}
+  // Players + WC pool for this tournament
+  S.players = PLAYERS_BY_TOURNAMENT[t] || PLAYERS_BY_TOURNAMENT.masters;
+  S.scores = loadScoresCache(t);
+  S.settings.activeRound = 1;
+  syncActiveTcfg();
+  filterEntriesForActive();
+  rebuildWCPool();
+  applySkin();
+  // Show app, hide home
+  document.getElementById('homeScreen').style.display='none';
+  document.querySelector('.page-wrap').style.display='';
+  buildTourneyFieldFromPool();
+  renderAll();
+  fetchScores();
+  updateLockNavIndicator();
+  updateShareUrls();
+  // Update URL (?t=) without the join param interfering
+  if(history.replaceState)history.replaceState(null,null,'?t='+t);
+  const isMobile=window.innerWidth<=700;
+  showTab('leaderboard',isMobile?null:document.querySelector('.desk-nav button'));
+  if(isMobile)setMobileNav('leaderboard');
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  S.settings.activeTournament=null;
+  try{localStorage.removeItem('mpool_tournament');}catch(e){}
+  document.querySelector('.page-wrap').style.display='none';
+  const hs=document.getElementById('homeScreen');hs.style.display='flex';
+  renderHome();
+  if(history.replaceState)history.replaceState(null,null,window.location.pathname);
+  window.scrollTo(0,0);
+}
+
 function showTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.desk-nav button').forEach(b=>b.classList.remove('active'));
@@ -2497,7 +2900,10 @@ function showTab(id,btn){
   if(btn)btn.classList.add('active');
   if(id==='scores')loadAugustaScoreboard();
   if(id==='enter')renderEnter();
-  if(id==='admin'&&document.getElementById('adminPanel').style.display==='block')renderAdmin();
+  if(id==='admin'){
+    if(adminUnlocked){document.getElementById('adminGate').style.display='none';document.getElementById('adminPanel').style.display='block';renderAdmin();}
+    else if(document.getElementById('adminPanel').style.display==='block')renderAdmin();
+  }
   // Persist tab in URL hash for refresh
   if(history.replaceState)history.replaceState(null,null,'#'+id);
   window.scrollTo(0,0);
@@ -2514,22 +2920,31 @@ function showAlert(id,msg,type){const el=document.getElementById(id);if(!el)retu
 // ── INIT ──
 async function init(){
   try{
-    // Load from Supabase first
+    // Load from Supabase first (entries, counts, per-tournament config)
     await loadFromSupabase();
-    if(!S.players.favorites.length)seed();
-
-    document.getElementById('activeRound').value=S.settings.activeRound;
-    buildTourneyFieldFromPool();
-    renderAll();
-    fetchScores();
     startAutoRefresh();
-    handleUrlParams();
-    updateShareUrls();
-    if(S.settings.locked)updateLockNavIndicator();
-
-    // Subscribe to realtime updates
     subscribeToChanges();
-    console.log('Masters Pool 2026 loaded with',S.entries.length,'entries');
+
+    // Decide which tournament to open: ?t= URL param > saved selection.
+    const params=new URLSearchParams(window.location.search);
+    let chosen = params.get('t');
+    if(!chosen){try{chosen=localStorage.getItem('mpool_tournament');}catch(e){}}
+
+    // Only auto-open if that tournament is actually open (or no gating issue)
+    if(chosen && SKINS[chosen] && tcfg(chosen).open){
+      await selectTournament(chosen);
+      // Preserve a ?join=1 deep link after selection
+      if(params.get('join')==='1'){
+        const isMobile=window.innerWidth<=700;
+        setTimeout(()=>{showTab('enter',isMobile?null:document.querySelectorAll('.desk-nav button')[2]);if(isMobile)setMobileNav('enter');},300);
+      }
+    }else{
+      // Show the home screen picker
+      document.querySelector('.page-wrap').style.display='none';
+      document.getElementById('homeScreen').style.display='flex';
+      renderHome();
+    }
+    console.log('Major Pools loaded.', S.allEntries?S.allEntries.length:0,'total entries across pools');
   }catch(e){
     console.error('Init error:',e);
     var errDiv=document.createElement('div');
