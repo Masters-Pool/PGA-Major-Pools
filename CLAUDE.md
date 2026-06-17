@@ -6,9 +6,10 @@ A golf pool web app for The Masters tournament. Single-page HTML app with Supaba
 ## Tech Stack
 - **Frontend:** Single `index.html` file (vanilla HTML/CSS/JS)
 - **Backend:** Supabase (Postgres + Realtime)
-- **Hosting:** Netlify (auto-deploys on push to main)
-- **Live URL:** https://masters-pool-2026-948.netlify.app/
-- **Netlify Dashboard:** https://app.netlify.com/projects/masters-pool-2026-948
+- **Hosting:** Netlify (auto-deploys on push to main), under Sam's own Netlify account
+- **Live URL:** https://pga-major-pool.netlify.app/
+- **Netlify Dashboard:** https://app.netlify.com/projects/pga-major-pool
+- **Old (deprecated) URL:** masters-pool-2026-948.netlify.app — was on the former partner's account
 
 ## Key Features
 - Pool leaderboard with scoring (top 4 of 6 picks count per round)
