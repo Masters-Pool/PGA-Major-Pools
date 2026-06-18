@@ -1574,7 +1574,7 @@ function applySkin(){
 
 // ── SCORE HELPERS ──
 function gsc(n,r){const s=S.scores[n];if(!s)return null;if(s.cut&&r>=3)return 8;const v=s['r'+r];return(v===''||v===null||v===undefined)?null:Number(v);}
-function entRnd(e,r){const v=e.picks.map(p=>p?gsc(p,r):null).filter(x=>x!==null);if(!v.length)return null;if(v.length<6)return v.reduce((a,b)=>a+b,0);return[...v].sort((a,b)=>a-b).slice(0,4).reduce((a,b)=>a+b,0);}
+function entRnd(e,r){const v=e.picks.map(p=>p?gsc(p,r):null).filter(x=>x!==null);if(!v.length)return null;return[...v].sort((a,b)=>a-b).slice(0,4).reduce((a,b)=>a+b,0);}
 function entTot(e){let t=0;for(let r=1;r<=S.settings.activeRound;r++){const v=entRnd(e,r);if(v!==null)t+=v;}return t;}
 function fmt(n){if(n===null||n===undefined||isNaN(n))return'—';if(n===0)return'E';return n>0?'+'+n:String(n);}
 function uc(n){return(n!==null&&n<0)?'u':'';}
