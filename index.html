@@ -1744,21 +1744,19 @@ function renderLB(){
 }
 
 function buildPicks(entry,round){
-  const ar=round||S.settings.activeRound;
+  // Overall view shows the CURRENT round's per-pick scores (what each player is
+  // shooting today); a specific round tab shows that round. The leaderboard row
+  // total stays cumulative regardless.
   const isOverall=round===0||!round;
-  // For Overall view, compute top 4 based on overall scores (sum of all rounds)
-  const scored=entry.picks.map((p,i)=>{
-    if(!p)return{i,v:null};
-    const v=isOverall?[1,2,3,4].map(r=>gsc(p,r)).filter(x=>x!==null).reduce((a,b)=>a+b,0)||null:gsc(p,ar);
-    return{i,v};
-  }).filter(x=>x.v!==null);
+  const ar=isOverall?S.settings.activeRound:round;
+  const scored=entry.picks.map((p,i)=>({i,v:p?gsc(p,ar):null})).filter(x=>x.v!==null);
   scored.sort((a,b)=>a.v-b.v);
   const cts=new Set(scored.slice(0,4).map(x=>x.i));
-  const label=isOverall?'Overall':'R'+ar;
+  const label=isOverall?('Round '+ar+' · Today'):('R'+ar);
   return`<div style="font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gm);margin-bottom:8px">${label} Picks</div>
     <div class="picks-grid">${entry.picks.map((p,i)=>{
       const s=p?S.scores[p]:null;const isCut=s&&s.cut;
-      const cur=round===0||!round?[1,2,3,4].map(r=>gsc(p,r)).filter(x=>x!==null).reduce((a,b)=>a+b,0)||null:gsc(p,ar);
+      const cur=p?gsc(p,ar):null;
       const counts=cts.has(i)&&!isCut;
       return`<div class="pick-card ${isCut?'cut':''}">
         <div class="ptier">${EMO[i]} ${TIERS[i]}</div>
