@@ -2045,7 +2045,13 @@ function renderAugustaBoard(){
 
   const scoreNum=(s)=>s==='E'?0:(s==='-'||s==='--'?999:parseInt(s)||999);
   const scoreCls=(s)=>{const n=scoreNum(s);return n<0?'score-under':n===0?'score-even':'score-over';};
-  const fmtRnd=(s)=>!s||s==='-'?'—':s==='E'||s===0?'E':s>0?'+'+s:String(s);
+  const fmtRnd=(s)=>{
+    if(s===null||s===undefined||s===''||s==='-')return'—';
+    if(s==='E'||s===0||s==='0')return'E';
+    const n=Number(s);                 // ESPN gives signed strings like "+1"/"-6"
+    if(isNaN(n))return String(s);
+    return n===0?'E':n>0?'+'+n:String(n);
+  };
 
   // Find current round (for TODAY column)
   let currentRound=1;
